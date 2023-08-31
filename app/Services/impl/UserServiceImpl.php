@@ -12,11 +12,15 @@ class UserServiceImpl implements IUserService
 
     function login(string $user, string $password): bool
     {
-        if (!isset($this->users[$user]))
-            return false;
+        if (!isset($this->users[$user])) return false;
 
         $correctPasswd = $this->users[$user];
 
         return $password == $correctPasswd;
+    }
+
+    function isUserExist(string $user): bool
+    {
+        return isset($this->users[$user]);
     }
 }

@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Services\IUserService;
 use Tests\TestCase;
+use function PHPUnit\Framework\assertFalse;
 
 class UserServiceTest extends TestCase
 {
@@ -38,6 +39,9 @@ class UserServiceTest extends TestCase
 
     public function testLoginNotFoundSuccess()
     {
+        $isUserExist = $this->userService->isUserExist('utif');
+        assertFalse($isUserExist);
+
         $onLogin = $this->userService->login('utif', 'rahasia');
         self::assertFalse($onLogin);
     }

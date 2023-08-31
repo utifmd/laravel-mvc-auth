@@ -16,3 +16,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/template', function () {
+    return view('template');
+});
+
+Route::controller(\App\Http\Controllers\UserController::class)->group(function (){
+    Route::get('/login', 'viewLogin');
+    Route::post('/login', 'onLogin');
+    Route::post('/logout', 'onLogout');
+});
