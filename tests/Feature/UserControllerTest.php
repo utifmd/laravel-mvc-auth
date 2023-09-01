@@ -64,6 +64,20 @@ class UserControllerTest extends TestCase
             ->assertSessionMissing('user');
     }
 
+    public function testOnLogoutForGuestSuccess()
+    {
+        $this->post('/logout')
+            ->assertRedirect('/');
+    }
+
+    public function testOnLogoutForMemberSuccess()
+    {
+        $this->withSession(['user' => 'utifmd'])
+            ->post('/logout')
+            ->assertRedirect('/')
+            ->assertSessionMissing('user');
+    }
+
     public function testViewLoginForMemberSuccess()
     {
         $this->withSession(['user' => 'utifmd'])
