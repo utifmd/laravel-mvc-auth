@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\UserController;
+use App\Http\Middleware\OnlyGuestMiddleware;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,8 +23,8 @@ Route::get('/template', function () {
     return view('template');
 });
 
-Route::controller(\App\Http\Controllers\UserController::class)->group(function (){
-    Route::get('/login', 'viewLogin');
-    Route::post('/login', 'onLogin');
+Route::controller(UserController::class)->group(function (){
+    Route::get('/login', 'viewLogin')->middleware([OnlyGuestMiddleware::class]);
+    Route::post('/login', 'onLogin')->middleware([OnlyGuestMiddleware::class]);
     Route::post('/logout', 'onLogout');
 });

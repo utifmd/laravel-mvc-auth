@@ -49,11 +49,8 @@ class UserController extends Controller
             ]);
         }
         $request->session()->put('user', $userInput);
-        return redirect('/');
 
-        /*return \response()->view('users.dashboard', [
-            'title' => 'Dashboard page',
-        ]);*/
+        return redirect('/');
     }
 
     function onLogout(Request $request): Response|RedirectResponse
